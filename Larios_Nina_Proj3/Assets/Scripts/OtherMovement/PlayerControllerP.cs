@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(FPSInput))]
-[RequireComponent(typeof(FPSMotor))]
+[RequireComponent(typeof(FPSInputP))]
+[RequireComponent(typeof(FPSMotorP))]
 
 public class PlayerControllerP : MonoBehaviour {
 
@@ -35,18 +35,6 @@ public class PlayerControllerP : MonoBehaviour {
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            IncreaseSpeed();
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            DecreaseSpeed();
-        }
-    }
-
     void OnMove(Vector3 movement)
     {
         motor.Move(movement * moveSpeed);

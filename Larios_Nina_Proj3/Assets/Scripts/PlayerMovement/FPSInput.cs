@@ -8,20 +8,33 @@ public class FPSInput : MonoBehaviour
     public event Action<Vector3> MoveInput = delegate { };
     public event Action JumpInput = delegate { };
 
+    public AudioClip footsteps;
+    public AudioSource MusicSource;
+    public ParticleSystem dust;
+
     private void Update()
     {
         DetectMoveInput();
         DetectJumpInput();
+
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
+        {
+            MusicSource.Play();
+            dust.Play();
+        }
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+        {
+            MusicSource.Stop();
+            dust.Stop();
+        }
     }
 
     void DetectMoveInput()
     {
-     //   float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
 
         if (yInput != 0)
         {
-         //   Vector3 horizontalMovement = transform.right * xInput;
             Vector3 forwardMovement = transform.forward * yInput;
             Vector3 movement = (forwardMovement).normalized;
             MoveInput.Invoke(movement);

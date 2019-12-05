@@ -7,16 +7,20 @@ public class Boomerang : MonoBehaviour {
     bool go;
     GameObject _player;
     GameObject _hat;
+    GameObject _hat2;
     Transform itemToRotate;
     Vector3 locationInFrontOfPlayer;
+
 
     private void Start()
     {
         go = false;
         _player = GameObject.Find("Player");
-        _hat = GameObject.Find("Hat");
+        _hat = GameObject.Find("FHat");
+        _hat2 = GameObject.Find("Capsule");
 
         _hat.GetComponent<MeshRenderer>().enabled = false;
+        _hat2.SetActive(false);
         itemToRotate = gameObject.transform.GetChild(0);
 
         locationInFrontOfPlayer = new Vector3(_player.transform.position.x, _player.transform.position.y , _player.transform.position.z) + _player.transform.forward * 5f;
@@ -47,6 +51,7 @@ public class Boomerang : MonoBehaviour {
         if (!go && Vector3.Distance(_player.transform.position, transform.position) < 1.5)
         {
             _hat.GetComponent<MeshRenderer>().enabled = true;
+            _hat2.SetActive(true);
             Destroy(this.gameObject);
         }
     }

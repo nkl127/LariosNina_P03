@@ -9,6 +9,13 @@ public class HatCol : MonoBehaviour {
     [SerializeField] GameObject _playerCam;
     [SerializeField] GameObject _otherCam;
 
+    public AudioClip changing;
+    public AudioSource MusicSource;
+    //public ParticleSystem change;
+
+    public AudioClip leaving;
+    public AudioSource MusicSource2;
+
     bool test = false;
 
     void OnCollisionEnter(Collision collision)
@@ -16,6 +23,8 @@ public class HatCol : MonoBehaviour {
         if (collision.gameObject.tag == "Hat")
         {
             Debug.Log("Hit");
+            MusicSource.Play();
+            //change.Play();
             //make player inactive
             _player.SetActive(false);
             //activate movement controls for object that it collided with
@@ -49,9 +58,10 @@ public class HatCol : MonoBehaviour {
                 gameObject.GetComponent<PlayerControllerP>().enabled = false;
                 gameObject.GetComponent<TurnP>().enabled = false;
 
-                _player.transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+                _player.transform.position = new Vector3(transform.position.x + 2, transform.position.y, transform.position.z);
 
                 test = false;
+                MusicSource2.Play();
             }
         }
     }

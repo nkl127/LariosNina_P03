@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float moveSpeed = .1f;
     [SerializeField] float jumpStrength = 10f;
 
-    public AudioClip footsteps;
-    public AudioSource MusicSource;
 
     private void Awake()
     {
@@ -35,17 +33,6 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            IncreaseSpeed();
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            DecreaseSpeed();
-        }
     }
 
     void OnMove(Vector3 movement)
